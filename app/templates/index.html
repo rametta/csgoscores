@@ -2,4 +2,10 @@
 
 {% block title %}{{ block.super }}{% endblock title %}
 
-{% block content %}<p></p>{% endblock content %}
+{% block content %}
+
+  {% for map in maps %}
+    {{map.title}}
+  {% endfor %}
+
+{% endblock content %}

@@ -6,7 +6,7 @@ $light-grey: rgb(242, 242, 242);
 /* Heights */
 $footer-height: 50px;
 
-/* Styles */
+/* Common */
 html {
   position: relative;
   min-height: 100%;
@@ -15,6 +15,9 @@ body {
   margin-bottom: $footer-height;
   background-color: $light-grey;
 }
+/* Common End */
+
+/* Footer */
 .footer {
   position: absolute;
   bottom: 0;
@@ -23,26 +26,45 @@ body {
   background-color: $dark-blue;
   color: $yellow;
   text-align: center;
+  .container {
+    padding-top: $footer-height/4;
+  }
 }
-.footer .container{
-  padding-top: $footer-height/4;
-}
+/* Footer End*/
+
+/* Navbar */
 .navbar{
   background-color: $dark-blue;
   border-radius: 0px;
 }
-.navbar-nav>li>a {
+.navbar-nav>li>a,
+.dropdown-menu>li>a {
   color: $yellow;
 }
 
-.navbar>.container
-.navbar-brand,
-.navbar>.container-fluid
-.navbar-brand {
+.dropdown-menu {
+  background-color: $dark-blue;
   color: $yellow;
 }
 
-.navbar-toggle
-.icon-bar {
+.navbar>.container .navbar-brand,
+.navbar>.container-fluid .navbar-brand {
+  color: $yellow;
+}
+
+.navbar-toggle .icon-bar {
   background-color: $yellow;
 }
+
+.nav>li>a:focus,
+.nav>li>a:hover,
+.nav>li>a:active,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover,
+.nav .open>a,
+.nav .open>a:focus,
+.nav .open>a:hover {
+  background-color:$yellow;
+  color: $dark-blue;
+}
+/* Navbar End */
