@@ -10,6 +10,7 @@
     <title>{% block title %}CS:GO Scores{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/csgoscores.min.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="icon" href="{% static 'imgs/csgologo.png' %}"/>
     <!-- TODO: Make favicon blue circle with yellow soldier inside. Make compatible with many devices-->
     {% block header %}{% endblock header %}
@@ -19,6 +20,16 @@
     <!-- Navbar -->
       {% include "nav.html" %}
     <!-- End Navbar -->
+
+    {% if page_title %}
+    <!-- Page Title -->
+      <div class="container">
+        <div class="row">
+          <h1 class="page-title">{{page_title}}</h1>
+        </div>
+      </div>
+    <!-- Page Title End -->
+    {% endif %}
 
     <!-- Content -->
       {% block content %}{% endblock content %}
