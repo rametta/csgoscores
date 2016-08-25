@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load csgoFilters %}
 
-{% block title %}New Score - {{ block.super }}{% endblock title %}
+{% block title %}Register - {{ block.super }}{% endblock title %}
 
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <form method="POST" class="form-horizontal" enctype="multipart/form-data">
                 <fieldset>
                     {% csrf_token %}
@@ -15,7 +15,7 @@
                     <div class="form-group">
                         {{ field.errors }}
                         <label for="{{ field.id_for_label }}" class="col-lg-12">{{ field.label }}</label>
-                        <div class="col-lg-12">
+                        <div class="col-lg-4">
                             {{ field|addClass:'form-control' }}
                             {% if field.help_text %}
                             <p class="help">{{ field.help_text|safe }}</p>
@@ -25,8 +25,8 @@
                     {% endfor %}
 
                     <div class="form-group">
-                        <div class="col-lg-12">
-                            <button type="submit" id="upload" class="pull-right btn btn-primary">Add Score</button>
+                        <div class="col-lg-4">
+                            <button type="submit" class="pull-right btn btn-primary">Register</button>
                         </div>
                     </div>
 

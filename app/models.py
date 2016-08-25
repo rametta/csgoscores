@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Map(models.Model):
@@ -35,7 +36,7 @@ class Match(models.Model):
     rank = models.ForeignKey(Rank, on_delete=models.CASCADE)
     mode = models.ForeignKey(Mode, on_delete=models.CASCADE)
     map = models.ForeignKey(Map, on_delete=models.CASCADE)
-    #TODO add fk to current user
+    player = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def outcome(self):
         if self.rounds_won > self.rounds_lost:

@@ -20,6 +20,15 @@ body {
 .page-title {
   color: $dark-blue;
 }
+.btn-primary {
+    color: $dark-blue;
+    background-color: $yellow;
+    border: none;
+    &:hover {
+      color: $yellow;
+      background-color: $dark-blue;
+    }
+}
 /* Common End */
 
 /* Footer */

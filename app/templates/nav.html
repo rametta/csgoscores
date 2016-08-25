@@ -1,19 +1,21 @@
 {% load staticfiles %}
+
 <nav class="navbar">
   <div class="container">
     <div class="navbar-header">
+
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'index' %}">CS:GO Scores <!--<img style="height:20px" src="{# static 'imgs/csgologo.png' #}">--></a>
+
+      <a class="navbar-brand" href="{% url 'index' %}">CS:GO Scores</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 
-      <!-- left -->
       <ul class="nav navbar-nav">
         <li ><a href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a></li>
         <li class="dropdown active">
@@ -29,15 +31,15 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">My Profile</a></li>
             <li><a href="#">Edit Profile</a></li>
+            <li><a href="{% url 'add_match' %}">Add Score</a></li>
           </ul>
         </li>
       <li ><a href="#">Search</a></li>
       </ul>
 
-      <!-- right -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
+        <li><a href="{% url 'auth_login' %}">Login</a></li>
+        <li><a href="{% url 'registration_register' %}">Register</a></li>
       </ul>
 
     </div>
