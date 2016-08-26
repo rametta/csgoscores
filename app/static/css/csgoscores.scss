@@ -17,9 +17,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: $dark-blue;
 }
-.page-title {
-  color: $dark-blue;
-}
 .btn-primary {
     color: $dark-blue;
     background-color: $yellow;
@@ -79,7 +76,6 @@ body {
 
 .nav>li>a:focus,
 .nav>li>a:hover,
-.nav>li>a:active,
 .dropdown-menu>li>a:focus,
 .dropdown-menu>li>a:hover,
 .nav .open>a,
