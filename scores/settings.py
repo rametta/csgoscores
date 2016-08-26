@@ -13,13 +13,14 @@ SECRET_KEY = '4jg$z2%zbb3y+fh=%_tp7knn%+$c&=3o+9bkob_!eujw%=cyt3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'app',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,6 +117,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Registration
 ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_OPEN = True
 LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'auth_login'
+#LOGOUT_REDIRECT_URL = 'auth_login'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.contutor.ca'
+EMAIL_HOST_USER = 'gallery@contutor.ca'
+EMAIL_HOST_PASSWORD = 'temp1212'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True

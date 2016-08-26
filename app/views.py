@@ -33,8 +33,3 @@ def add_match(request):
         form = MatchForm()
 
     return render(request, 'add_match.html', {'form': form, 'page_title': 'Add Score'})
-
-
-def logout(request):
-    logout(request, 'auth_login')
-    #return redirect('auth_login')

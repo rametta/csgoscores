@@ -7,6 +7,5 @@ urlpatterns = [
     url(r'^new/$', views.add_match, name='add_match'),
     url(r'^search/$', views.search, name='search'),
     # Registration
-    url(r'^accounts/', include('registration.backends.hmac.urls')),
-
+    url(r'^accounts/', include('registration.backends.default.urls')),
 ]
