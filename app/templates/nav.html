@@ -22,9 +22,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Leaderboards <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{% url 'leaderboard' %}">All Players</a></li>
-            <li><a href="{# url 'my_scores' id=request.user #}">My Scores</a></li>
-            <li><a href="{# url 'my_steam_scores' id=request.user.steam_id #}">My Steam Scores</a></li>
             {% if user.is_authenticated %}
+              <li><a href="{% url 'view_player' username=request.user.username %}">My Scores</a></li>
+              <li><a href="{# url 'my_steam_scores' player=request.user.username #}">My Steam Scores</a></li>
               <li><a href="{% url 'add_match' %}">Add Score</a></li>
             {% endif %}
           </ul>

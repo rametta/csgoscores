@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}{{page_title}} - {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="match">
+
+      <!-- Player Overall Stats -->
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+
+    </div>
+
+      <!-- Player Matches Table -->
+    <div class="row">
+      <div class="col-xs-12">
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Outcome</th>
+                <th>Rounds Won</th>
+                <th>Rounds Lost</th>
+                <th>Kills</th>
+                <th>Assists</th>
+                <th>Deaths</th>
+                <th>K/D Ratio</th>
+                <th>MVP's</th>
+                <th>Placement</th>
+                <th>Score</th>
+                <th>Date</th>
+                <th>Map</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for match in matches %}
+              <tr>
+                <td><a href="{% url 'view_match' match=match.id %}">{{match.outcome}}</a></td>
+                <td>{{match.rounds_won}}</td>
+                <td>{{match.rounds_lost}}</td>
+                <td>{{match.kills}}</td>
+                <td>{{match.assists}}</td>
+                <td>{{match.deaths}}</td>
+                <td>{{match.kill_death_ratio}}</td>
+                <td>{{match.mvps}}</td>
+                <td>{{match.placement}}</td>
+                <td>{{match.score}}</td>
+                <td>{{match.date}}</td>
+                <td>{{match.map.title}}</td>
+              </tr>
+              {% endfor %}
+            </body>
+          </table>
+        </div><!-- end .table-responsive -->
+
+      </div>
+
+    </div>
+  </div>
+
+{% endblock content %}
