@@ -1,5 +1,6 @@
 /* Colors */
 $dark-blue: rgb(16,41,84);
+$blue: lighten($dark-blue, 20%);
 $yellow: rgb(233,188,10);
 $light-grey: rgb(242, 242, 242);
 
@@ -17,14 +18,31 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: $dark-blue;
 }
+a {
+  color: $blue;
+}
 .btn-primary {
     color: $dark-blue;
     background-color: $yellow;
     border: none;
-    &:hover {
+    &:hover, &:focus, &:active {
       color: $yellow;
       background-color: $dark-blue;
+      border: none;
     }
+}
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.open>.dropdown-toggle.btn-primary.focus,
+.open>.dropdown-toggle.btn-primary:focus,
+.open>.dropdown-toggle.btn-primary:hover {
+  color: $yellow;
+  background-color: $dark-blue;
+  border: none;
 }
 /* Common End */
 

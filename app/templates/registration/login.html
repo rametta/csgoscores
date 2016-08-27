@@ -2,6 +2,7 @@
 {% load csgoFilters %}
 
 {% block title %}Login - {{ block.super }}{% endblock title %}
+{% block pagetitle %}Login{% endblock pagetitle %}
 
 {% block content %}
 <div class="container">
@@ -26,8 +27,8 @@
 
                     <div class="form-group">
                         <div class="col-lg-4">
-                            <button type="submit" class="pull-right btn btn-primary">Submit</button>
-                            <p><a href="{# url 'password_reset' #}">Forgot your password?</a></p>
+                            <button type="submit" class="pull-right btn btn-primary">Login</button>
+                            <p><a href="{% url 'auth_password_reset' %}">Forgot your password?</a></p>
                         </div>
                     </div>
 

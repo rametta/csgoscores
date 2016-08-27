@@ -9,6 +9,7 @@ def index(request):
 
 
 def leaderboard(request):
+    #get all users groupby sum stats
     stats = Match.objects.all()
     return render(
         request,
@@ -17,7 +18,7 @@ def leaderboard(request):
     )
 
 def search(request):
-    return render(request, 'search.html', {})
+    return render(request, 'search.html', {'page_title': 'Search'})
 
 
 @login_required
