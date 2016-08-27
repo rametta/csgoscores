@@ -42,7 +42,7 @@ class Match(models.Model):
         if self.rounds_won > self.rounds_lost:
             return "Win"
         elif self.rounds_won < self.rounds_lost:
-            return "lost"
+            return "Loss"
         else:
             return "Tie"
 

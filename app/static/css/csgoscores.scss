@@ -3,6 +3,8 @@ $dark-blue: rgb(16,41,84);
 $blue: lighten($dark-blue, 20%);
 $yellow: rgb(233,188,10);
 $light-grey: rgb(242, 242, 242);
+$green: rgb(51, 204, 51);
+$red: rgb(204, 51, 51);
 
 /* Heights */
 $footer-height: 50px;
@@ -46,6 +48,13 @@ a {
 }
 .page-title{
   padding-left:15px;
+  text-transform: capitalize;
+}
+.red {
+  color: $red;
+}
+.green {
+  color: $green;
 }
 /* Common End */
 
@@ -111,13 +120,29 @@ a {
 	border-color: $dark-blue;
 	.panel-heading {
 		background-color: $dark-blue;
-   		border-color: $dark-blue;
+ 		border-color: $dark-blue;
 		color: $yellow;
 		border-radius:0;
 	}
 }
 
-.panel-container {
-	margin-top:10px;
+.match-panels{
+  text-align: center;
+  .panel-body {
+    font-size: 42px;
+  }
+}
+
+.match-info {
+  .list-group-item {
+    text-transform: capitalize;;
+    border-radius: 0;
+    border-color: $dark-blue;
+    &.active{
+      background-color: $dark-blue;
+      color: $yellow;
+      border:none;
+    }
+  }
 }
 /* Panels End */

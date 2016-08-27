@@ -1,35 +1,132 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Match - {{ block.super }}{% endblock title %}
+{% block header %}<link rel="stylesheet" href="{% static 'css/odometer.css' %}"/>{% endblock header %}
 
 {% block content %}
 
   <div class="container match-panels">
     <div class="row">
 
-      <div class="col-md-4">
+      <div class="col-xs-6 col-sm-3">
         <div class="panel panel-primary">
-          <div class="panel-heading">#panel1</div>
-          <div class="panel-body" id="panel1"></div>
+          <div class="panel-heading">Kills</div>
+          <div class="panel-body odometer" id="kills">0</div>
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-xs-6 col-sm-3">
         <div class="panel panel-primary">
-          <div class="panel-heading">#panel1</div>
-          <div class="panel-body" id="panel1"></div>
+          <div class="panel-heading">Deaths</div>
+          <div class="panel-body odometer" id="deaths">0</div>
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-xs-6 col-sm-3">
         <div class="panel panel-primary">
-          <div class="panel-heading">#panel1</div>
-          <div class="panel-body" id="panel1"></div>
+          <div class="panel-heading">Rounds Won</div>
+          <div class="panel-body odometer" id="rounds_won">0</div>
         </div>
       </div>
 
+      <div class="col-xs-6 col-sm-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Rounds Lost</div>
+          <div class="panel-body odometer" id="rounds_lost">0</div>
+        </div>
+      </div>
 
-    </div>
-  </div>
+    </div><!-- row end -->
+
+    <div class="row">
+
+      <div class="col-md-3">
+        <ul class="list-group match-info">
+          <li class="list-group-item active">Match Info</li>
+          <li class="list-group-item">Player: <a href="{% url 'view_player' username=match.player.username %}">{{match.player.username}}</a></li>
+          <li class="list-group-item">{{match.map.title}}</li>
+          <li class="list-group-item">{{match.mode}}</li>
+          <li class="list-group-item">{{match.rank}}</li>
+          <li class="list-group-item">{{match.date}}</li>
+        </ul>
+      </div>
+
+      <!--
+      <div class="col-md-9">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Round Win/Loss Ratio</th>
+                <th>Kill/Death Ratio</th>
+                <th>Assists</th>
+                <th>MVP's</th>
+                <th>Placement</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="{% if match.round_win_loss_ratio >= 1 %} green {% else %} red {% endif %}" id="round_win_loss_ratio">{{match.round_win_loss_ratio}}</td>
+                <td class="{% if match.kill_death_ratio >= 1 %} green {% else %} red {% endif %}" id="kill_death_ratio">{{match.kill_death_ratio}}</td>
+                <td>{{match.assists}}</td>
+                <td>{{match.mvps}}</td>
+                <td>{{match.placement}}</td>
+                <td>{{match.score}}</td>
+              </tr>
+            </body>
+          </table>
+        </div>
+      </div>
+    -->
+
+      <div class="col-md-3">
+        <canvas id="kdChart" width="100%" height="90%"></canvas>
+      </div>
+
+    </div> <!-- row end -->
+
+
+  </div> <!-- container end -->
 
 {% endblock content %}
+
+{% block afterContent %}
+<script src="{% static 'js/odometer.min.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+
+<script>
+var matches = {{matchJSON|safe}};
+//odemeter
+setTimeout(function(){
+    document.getElementById("kills").innerHTML = matches[0].fields.kills;
+    document.getElementById("deaths").innerHTML = matches[0].fields.deaths;
+    document.getElementById("rounds_won").innerHTML = matches[0].fields.rounds_won;
+    document.getElementById("rounds_lost").innerHTML = matches[0].fields.rounds_lost;
+}, 500);
+</script>
+
+<script>
+//make charts
+var ctx = document.getElementById("kdChart");
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["Kills", "Deaths"],
+        datasets: [{
+            data: [matches[0].fields.kills, matches[0].fields.deaths,],
+            backgroundColor: [
+              'rgba(0, 255, 153, .2)',
+              'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(0, 255, 153, 1)',
+                'rgba(255,99,132,1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+});
+</script>
+
+{% endblock afterContent %}

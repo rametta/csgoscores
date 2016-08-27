@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core import serializers
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -27,8 +28,7 @@ def search(request):
 def view_player(request, username):
     player = User.objects.get(username=username)
     matches = Match.objects.filter(player=player)
-    username = player.username.title()
-    return render(request, 'view_player.html', {'page_title': username, 'player': player, 'matches': matches})
+    return render(request, 'view_player.html', {'page_title': player.username, 'player': player, 'matches': matches})
 
 
 def players_compare(request):
@@ -58,4 +58,5 @@ def edit_match(request, id):
 
 def view_match(request, match):
     match = Match.objects.get(id=match)
-    return render(request, 'view_match.html', {'page_title': match.date, 'match': match})
+    matchJSON = serializers.serialize('json',  [match,])
+    return render(request, 'view_match.html', {'page_title': match.outcome, 'match': match, 'matchJSON': matchJSON})
