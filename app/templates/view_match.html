@@ -71,7 +71,7 @@
                 <td id="kill_death_ratio">{{match.kill_death_ratio|floatformat:2}}</td>
                 <td>{{match.assists}}</td>
                 <td>{{match.mvps}}</td>
-                <td>{{match.placement}}</td>
+                <td id="placement_str"></td>
                 <td>{{match.score}}</td>
               </tr>
             </body>
@@ -95,6 +95,8 @@
 <script type="text/javascript" src="{% static 'js/odometer.min.js' %}"></script>
 <script>
 var matches = {{matchJSON|safe}};
+document.getElementById("placement_str").innerHTML = convert_placement(matches[0].fields.placement);
+
 //odemeter
 setTimeout(function(){
     document.getElementById("kills").innerHTML = matches[0].fields.kills;
@@ -102,6 +104,26 @@ setTimeout(function(){
     document.getElementById("rounds_won").innerHTML = matches[0].fields.rounds_won;
     document.getElementById("rounds_lost").innerHTML = matches[0].fields.rounds_lost;
 }, 500);
+
+function convert_placement(place){
+  switch(place){
+    case 1:
+      return "1st";
+      break;
+    case 2:
+      return "2nd";
+      break;
+    case 3:
+      return "3rd";
+      break;
+    case 4:
+      return "4th";
+      break;
+    case 5:
+      return "5th";
+      break;
+  }
+}
 </script>
 
 <script type="text/javascript" src="{% static 'js/chartjs2.2.2.min.js' %}"></script>

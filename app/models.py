@@ -24,15 +24,6 @@ class Rank(models.Model):
 
 
 class Match(models.Model):
-
-    PLACEMENTS = {
-        1: '1ST',
-        2: '2nd',
-        3: '3rd',
-        4: '4th',
-        5: '5th',
-    }
-
     rounds_won = models.PositiveSmallIntegerField(verbose_name='Rounds Won')
     rounds_lost = models.PositiveSmallIntegerField(verbose_name='Rounds Lost')
     kills = models.PositiveSmallIntegerField()
@@ -63,9 +54,6 @@ class Match(models.Model):
 
     def mKill_death_ratio(self):
         return self.kills/self.deaths
-
-    def placement_str(self):
-        return PLACEMENTS[self.placement]()
 
     def save(self, *args, **kwargs):
         # I know saving calculated fields is not the best

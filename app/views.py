@@ -36,6 +36,28 @@ def search(request):
 # Players
 def view_player(request, username):
     matches = Match.objects.filter(player__username=username)
+
+    counts = {
+        "kills": matches.aggregate(Sum('kills')),
+        "deaths": matches.aggregate(Sum('deaths')),
+        "assists": matches.aggregate(Sum('assists')),
+        "rounds_won": matches.aggregate(Sum('rounds_won')),
+        "rounds_lost": matches.aggregate(Sum('rounds_lost')),
+        "mvps": matches.aggregate(Sum('mvps')),
+        "avg_kd": matches.aggregate(Avg('kill_death_ratio')),
+        "avg_round_wl": matches.aggregate(Avg('round_win_loss_ratio')),
+        "matches_won": matches.filter(outcome='Win').count(),
+        "matches_lost": matches.filter(outcome='Loss').count(),
+        "matches_tied": matches.filter(outcome='Tie').count(),
+    }
+
+    if counts["matches_won"]==0:
+        matches_wl = 0
+    elif counts["matches_lost"]==0:
+        matches_wl = counts["matches_won"]
+    else:
+        matches_wl = counts["matches_won"]/counts["matches_lost"]
+
     data = serializers.serialize("json", matches)
     return render(request, 'view_player.html', {'page_title': username, 'matches': matches, 'data': data})
 
