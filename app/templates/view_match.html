@@ -67,8 +67,8 @@
             </thead>
             <tbody>
               <tr>
-                <td id="round_win_loss_ratio">{{match.round_win_loss_ratio}}</td>
-                <td id="kill_death_ratio">{{match.kill_death_ratio}}</td>
+                <td id="round_win_loss_ratio">{{match.round_win_loss_ratio|floatformat:2}}</td>
+                <td id="kill_death_ratio">{{match.kill_death_ratio|floatformat:2}}</td>
                 <td>{{match.assists}}</td>
                 <td>{{match.mvps}}</td>
                 <td>{{match.placement}}</td>
@@ -92,9 +92,7 @@
 {% endblock content %}
 
 {% block afterContent %}
-<script src="{% static 'js/odometer.min.js' %}"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
-
+<script type="text/javascript" src="{% static 'js/odometer.min.js' %}"></script>
 <script>
 var matches = {{matchJSON|safe}};
 //odemeter
@@ -106,6 +104,7 @@ setTimeout(function(){
 }, 500);
 </script>
 
+<script type="text/javascript" src="{% static 'js/chartjs2.2.2.min.js' %}"></script>
 <script>
 //make charts
 var ctx = document.getElementById("kdChart");

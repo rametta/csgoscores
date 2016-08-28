@@ -18,9 +18,11 @@
     <div class="row">
       <div class="col-xs-12">
 
+        <h2>All Matches <span class="badge">{{matches.count}}</span></h2>
+
         <div class="table-responsive">
-          <table class="table">
-            <thead>
+          <table class="table table-bordered">
+            <thead class="table-headers">
               <tr>
                 <th>Outcome</th>
                 <th>Rounds Won</th>
@@ -45,7 +47,7 @@
                 <td>{{match.kills}}</td>
                 <td>{{match.assists}}</td>
                 <td>{{match.deaths}}</td>
-                <td>{{match.kill_death_ratio}}</td>
+                <td>{{match.kill_death_ratio|floatformat:2}}</td>
                 <td>{{match.mvps}}</td>
                 <td>{{match.placement}}</td>
                 <td>{{match.score}}</td>
@@ -65,5 +67,8 @@
 {% endblock content %}
 
 {% block afterContent %}
-
+<script>
+var data = {{data|safe}};
+console.log(data);
+</script>
 {% endblock afterContent %}

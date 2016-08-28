@@ -3,7 +3,7 @@ from django.core import serializers
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import F, FloatField, Sum
+from django.db.models import Sum, Avg
 from .models import Match
 from .forms import MatchForm
 
@@ -18,7 +18,8 @@ def leaderboard(request):
         pSumMVPs = Sum('mvps'),
         pSumAssists = Sum('assists'),
         pSumRoundsWon = Sum('rounds_won'),
-        pSumRoundsLost = Sum('rounds_lost')
+        pSumRoundsLost = Sum('rounds_lost'),
+        pAvgKD = Avg('kill_death_ratio')
     ).order_by('-pSumKills')
 
     return render(
@@ -34,9 +35,9 @@ def search(request):
 
 # Players
 def view_player(request, username):
-    player = User.objects.get(username=username)
-    matches = Match.objects.filter(player=player)
-    return render(request, 'view_player.html', {'page_title': player.username, 'player': player, 'matches': matches})
+    matches = Match.objects.filter(player__username=username)
+    data = serializers.serialize("json", matches)
+    return render(request, 'view_player.html', {'page_title': username, 'matches': matches, 'data': data})
 
 
 def players_compare(request):

@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% load csgoFilters %}
+{% load staticfiles %}
 
 {% block title %}New Score - {{ block.super }}{% endblock title %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/pickaday.min.css' %}">
+{% endblock header %}
 
 {% block content %}
 <div class="container">
@@ -36,3 +40,14 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block afterContent %}
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/pickaday.min.js' %}"></script>
+<script>
+  var picker = new Pikaday({
+    field: document.getElementById('id_date'),
+    format: 'MM/DD/YYYY'
+  });
+</script>
+{% endblock afterContent %}
