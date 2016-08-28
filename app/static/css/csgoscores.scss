@@ -23,6 +23,9 @@ body {
 a {
   color: $blue;
 }
+.pad-bot-20{
+  padding-bottom: 20px;
+}
 .btn-primary {
     color: $dark-blue;
     background-color: $yellow;
@@ -93,8 +96,6 @@ a {
   color: $yellow;
 }
 
-
-
 .navbar-toggle .icon-bar {
   background-color: $yellow;
 }
@@ -146,3 +147,21 @@ a {
   }
 }
 /* Panels End */
+
+/* Tables */
+.table-headers {
+  background-color: $dark-blue;
+  color: $yellow;
+}
+table, .table, .table-responsive {
+   border-color: $dark-blue;
+}
+.table-bordered>tbody>tr>td,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>td,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th{
+  border-color: $dark-blue;
+}
+/* Tables End*/

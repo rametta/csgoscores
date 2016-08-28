@@ -5,8 +5,8 @@
 
 {% block content %}
 
-  <div class="container match-panels">
-    <div class="row">
+  <div class="container">
+    <div class="row match-panels">
 
       <div class="col-xs-6 col-sm-3">
         <div class="panel panel-primary">
@@ -38,7 +38,7 @@
 
     </div><!-- row end -->
 
-    <div class="row">
+    <div class="row pad-bot-20">
 
       <div class="col-md-3">
         <ul class="list-group match-info">
@@ -51,11 +51,11 @@
         </ul>
       </div>
 
-      <!--
-      <div class="col-md-9">
+      <div class="col-md-6">
+
         <div class="table-responsive">
-          <table class="table">
-            <thead>
+          <table class="table table-bordered">
+            <thead class="table-headers">
               <tr>
                 <th>Round Win/Loss Ratio</th>
                 <th>Kill/Death Ratio</th>
@@ -67,8 +67,8 @@
             </thead>
             <tbody>
               <tr>
-                <td class="{% if match.round_win_loss_ratio >= 1 %} green {% else %} red {% endif %}" id="round_win_loss_ratio">{{match.round_win_loss_ratio}}</td>
-                <td class="{% if match.kill_death_ratio >= 1 %} green {% else %} red {% endif %}" id="kill_death_ratio">{{match.kill_death_ratio}}</td>
+                <td id="round_win_loss_ratio">{{match.round_win_loss_ratio}}</td>
+                <td id="kill_death_ratio">{{match.kill_death_ratio}}</td>
                 <td>{{match.assists}}</td>
                 <td>{{match.mvps}}</td>
                 <td>{{match.placement}}</td>
@@ -77,8 +77,8 @@
             </body>
           </table>
         </div>
+
       </div>
-    -->
 
       <div class="col-md-3">
         <canvas id="kdChart" width="100%" height="90%"></canvas>
@@ -112,16 +112,18 @@ var ctx = document.getElementById("kdChart");
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ["Kills", "Deaths"],
+        labels: ["Kills", "Deaths", "Assists"],
         datasets: [{
-            data: [matches[0].fields.kills, matches[0].fields.deaths,],
+            data: [matches[0].fields.kills, matches[0].fields.deaths, matches[0].fields.assists],
             backgroundColor: [
-              'rgba(0, 255, 153, .2)',
+              'rgba(0, 255, 153, 0.2)',
               'rgba(255, 99, 132, 0.2)',
+              'rgba(233, 188, 10, 0.2)'
             ],
             borderColor: [
                 'rgba(0, 255, 153, 1)',
-                'rgba(255,99,132,1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(233, 188, 10, 1)'
             ],
             borderWidth: 1
         }]

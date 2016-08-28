@@ -3,6 +3,7 @@ from django.core import serializers
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import F, FloatField, Sum
 from .models import Match
 from .forms import MatchForm
 
@@ -11,8 +12,15 @@ def index(request):
 
 
 def leaderboard(request):
-    #get all users groupby sum stats
-    stats = Match.objects.all()
+    stats = Match.objects.values('player__username').annotate(
+        pSumKills = Sum('kills'),
+        pSumDeaths = Sum('deaths'),
+        pSumMVPs = Sum('mvps'),
+        pSumAssists = Sum('assists'),
+        pSumRoundsWon = Sum('rounds_won'),
+        pSumRoundsLost = Sum('rounds_lost')
+    ).order_by('-pSumKills')
+
     return render(
         request,
         'leaderboard.html',

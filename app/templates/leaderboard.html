@@ -6,48 +6,40 @@
 
 <div class="container">
   <div class="row">
-
-    <!-- Main Table -->
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Outcome</th>
-            <th>Rounds Won</th>
-            <th>Rounds Lost</th>
-            <th>Kills</th>
-            <th>Assists</th>
-            <th>Deaths</th>
-            <th>K/D Ratio</th>
-            <th>MVP's</th>
-            <th>Placement</th>
-            <th>Score</th>
-            <th>Date</th>
-            <th>Map</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in leaderboard %}
-          <tr>
-            <td>{{row.outcome}}</td>
-            <td>{{row.rounds_won}}</td>
-            <td>{{row.rounds_lost}}</td>
-            <td>{{row.kills}}</td>
-            <td>{{row.assists}}</td>
-            <td>{{row.deaths}}</td>
-            <td>{{row.kill_death_ratio}}</td>
-            <td>{{row.mvps}}</td>
-            <td>{{row.placement}}</td>
-            <td>{{row.score}}</td>
-            <td>{{row.date}}</td>
-            <td>{{row.map.title}}</td>
-          </tr>
-          {% endfor %}
-        </body>
-      </table>
+    <div class="col-xs-12">
+      <!-- Main Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-headers">
+            <tr>
+              <th>Player</th>
+              <th>Rounds Won</th>
+              <th>Rounds Lost</th>
+              <th>Kills</th>
+              <th>Assists</th>
+              <th>Deaths</th>
+              <th>K/D Ratio</th>
+              <th>MVP's</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in leaderboard %}
+              <tr>
+                <td><a href="{% url 'view_player' username=row.player__username %}">{{row.player__username}}</a></td>
+                <td>{{row.pSumRoundsWon}}</td>
+                <td>{{row.pSumRoundsLost}}</td>
+                <td>{{row.pSumKills}}</td>
+                <td>{{row.pSumAssists}}</td>
+                <td>{{row.pSumDeaths}}</td>
+                <td>{{row.pAvgKD}}</td>
+                <td>{{row.pSumMVPs}}</td>
+              </tr>
+            {% endfor %}
+          </body>
+        </table>
+      </div>
+      <!-- Main Table End -->
     </div>
-    <!-- Main Table End -->
-
   </div>
 </div>
 
